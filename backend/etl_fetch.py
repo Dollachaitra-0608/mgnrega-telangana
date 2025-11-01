@@ -3,13 +3,17 @@ import time, logging, os, math
 import requests
 from database import SessionLocal, engine, Base
 from models import MGNREGAData
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Ensure tables exist
 Base.metadata.create_all(bind=engine)
 
 # API config (from data.gov.in page you pasted)
 RESOURCE_ID = "ee03643a-ee4c-48c2-ac30-9f2ff26ab722"
-API_KEY = "579b464db66ec23bdd000001a5153959870449c641b1035ab68e4289"
+API_KEY = os.getenv("579b464db66ec23bdd000001a5153959870449c641b1035ab68e4289")
 BASE_URL = f"https://api.data.gov.in/resource/{RESOURCE_ID}"
 
 # We'll fetch Telangana only
